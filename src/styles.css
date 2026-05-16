@@ -1,118 +1,6 @@
-/* --- Account Groups --- */
-.accounts-groups {
-  display: flex;
-  flex-direction: column;
-  gap: 36px;
-  padding: 28px 32px 32px 32px;
-}
-.accounts-group {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.accounts-group-title {
-  font-size: 1.18rem;
-  font-weight: 700;
-  color: #7ab5ff;
-  margin-bottom: 6px;
-  letter-spacing: 0.01em;
-  padding-left: 2px;
-}
-/* --- Accounts Page Styles --- */
-.accounts-card {
-  width: min(100%, 720px);
-  background: var(--panel-bg);
-  border-radius: 18px;
-  border: 1.5px solid rgba(122, 181, 255, 0.18);
-  box-shadow: 0 18px 44px rgba(0,0,0,0.45);
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.accounts-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--brand-blue);
-  color: #fff;
-  padding: 22px 32px 18px 32px;
-}
-.accounts-title {
-  font-size: 2.1rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-}
-.accounts-logout {
-  background: #fff2;
-  color: #fff;
-  border: 1.5px solid #fff5;
-  border-radius: 18px;
-  font-size: 1.1rem;
-  font-weight: 500;
-  padding: 7px 22px;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-.accounts-logout:hover {
-  background: #fff3;
-}
-
-.accounts-list {
-  padding: 28px 32px 32px 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-}
-.account-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #1b2335;
-  border-radius: 12px;
-  padding: 18px 22px;
-  box-shadow: 0 2px 8px #0002;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: 400;
-  font-stretch: condensed;
-  font-variation-settings: "wght" 400, "wdth" 75;
-  gap: 0;
-}
-}
-.account-type {
-  font-size: 1.1rem;
-  font-weight: 400;
-  color: var(--ink);
-  white-space: nowrap;
-  font-stretch: condensed;
-  font-variation-settings: "wght" 400, "wdth" 75;
-}
-.account-balance {
-  font-size: 1.15rem;
-  font-weight: 500;
-  color: #7ab5ff;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-  font-stretch: condensed;
-  font-variation-settings: "wght" 400, "wdth" 75;
-}
-  display: flex;
-  gap: 10px;
-  white-space: nowrap;
-}
-.account-action {
-  background: var(--brand-blue);
-  color: #fff;
-  border: none;
-  border-radius: 16px;
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 7px 18px;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-.account-action:hover {
-  background: #2a74f8;
-}
+/* =========================================
+   CSS Variables
+   ========================================= */
 :root {
   --page-bg: #0a0e16;
   --panel-bg: #161d2a;
@@ -140,35 +28,40 @@ body {
 .page-shell {
   min-height: 100vh;
   display: grid;
-  place-items: center;
-  padding: 28px 10px;
+  place-items: start center;
+  padding: 28px 0;
 }
 
+/* =========================================
+   Login Card
+   ========================================= */
 .login-card {
   width: min(100%, 460px);
   background: var(--panel-bg);
-  border-radius: 0 0 16px 16px;
+  border-radius: 16px;
   border: 1px solid rgba(122, 181, 255, 0.16);
   box-shadow: 0 22px 50px rgba(0, 0, 0, 0.55);
   overflow: hidden;
 }
 
-.brand-strip {
-  position: relative;
-  height: 10px;
+.login-header {
+  display: flex;
+  align-items: center;
   background: var(--brand-blue);
+  color: #fff;
+  padding: 16px 20px 14px;
 }
 
-.brand-strip::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 66%;
-  height: 100%;
-  background: var(--brand-red);
-  clip-path: polygon(0 0, 100% 0, 96% 100%, 0 100%);
-  display: none;
+.login-header .accounts-title {
+  font-size: 1.15rem;
+  gap: 8px;
+  line-height: 1.2;
+}
+
+.login-header .accounts-brand-logo {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
 }
 
 .login-form {
@@ -177,7 +70,6 @@ body {
 
 .field-label {
   display: block;
-  font-size: 35px;
   font-size: clamp(1.05rem, 3.5vw, 2.15rem);
   font-weight: 700;
   color: var(--ink);
@@ -281,16 +173,297 @@ body {
   text-decoration-thickness: 1px;
 }
 
-@media (max-width: 500px) {
-  .login-form {
-    padding: 28px 22px 30px;
-  }
-
-  .field-input {
-    height: 42px;
-  }
-
-  .login-button {
-    height: 54px;
-  }
+/* =========================================
+   Accounts Card
+   ========================================= */
+.accounts-card {
+  width: 1080px;
+  background: var(--panel-bg);
+  border-radius: 18px;
+  border: 1.5px solid rgba(122, 181, 255, 0.18);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
+  margin: 0 auto;
+  overflow: hidden;
 }
+
+.accounts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--brand-blue);
+  color: #fff;
+  padding: 20px 32px 16px;
+}
+
+.accounts-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.accounts-brand-logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  object-fit: cover;
+  flex: 0 0 28px;
+}
+
+.accounts-brand-name {
+  font-weight: 800;
+}
+
+.accounts-brand-rest {
+  font-weight: 600;
+}
+
+.accounts-logout {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 18px;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 7px 22px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.accounts-logout:hover { background: rgba(255, 255, 255, 0.2); }
+
+/* Navigation menu */
+.accounts-menu {
+  display: flex;
+  gap: 0;
+  padding: 0 32px;
+  background: #e8ecf0;
+  border-bottom: 1px solid #ccc;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+}
+
+.menu-item {
+  color: #333;
+  text-decoration: none;
+  padding: 12px 18px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  transition: border-color 0.15s, background 0.15s;
+}
+.menu-item:hover {
+  background: #d8dce0;
+}
+.menu-item.active {
+  border-bottom-color: var(--brand-blue);
+  color: var(--brand-blue);
+}
+
+/* Welcome section */
+.accounts-welcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 22px 32px 14px;
+  border-bottom: 1px solid rgba(122, 181, 255, 0.1);
+}
+
+.accounts-client-label {
+  font-size: 0.8rem;
+  color: #aab8d0;
+  margin-bottom: 4px;
+}
+
+.accounts-hello {
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--ink);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.accounts-customer-name { font-style: italic; }
+
+.accounts-welcome-links {
+  font-size: 0.9rem;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.accounts-welcome-links a {
+  color: var(--link-blue);
+  text-decoration: none;
+}
+.accounts-welcome-links a:hover { text-decoration: underline; }
+.accounts-welcome-links .divider { color: #4c5f7f; }
+
+.accounts-rewards-badge { text-align: right; min-width: 160px; }
+
+.accounts-rewards-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #aab8d0;
+  letter-spacing: 0.08em;
+}
+
+.accounts-rewards-since {
+  font-size: 0.8rem;
+  color: #aab8d0;
+  margin: 2px 0;
+}
+
+.accounts-rewards-link {
+  color: var(--link-blue);
+  font-size: 0.85rem;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 4px;
+}
+.accounts-rewards-link:hover { text-decoration: underline; }
+
+.accounts-rewards-tier {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #c9a84c;
+  letter-spacing: 0.06em;
+  text-align: right;
+  line-height: 1.3;
+}
+
+/* Groups container */
+.accounts-groups {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0 28px;
+}
+
+.accounts-disclaimer {
+  font-size: 0.78rem;
+  color: #7a8eaa;
+  font-style: italic;
+  margin: 20px 32px 4px;
+  padding: 0;
+}
+
+.accounts-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.accounts-group-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: 0 0 6px;
+  border-bottom: 2px solid var(--brand-blue);
+  margin: 0 32px;
+}
+
+.accounts-group-logo {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  object-fit: cover;
+  flex: 0 0 18px;
+}
+
+.accounts-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.account-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 12px 32px 10px 48px;
+  border-bottom: 1px solid rgba(122, 181, 255, 0.07);
+  gap: 16px;
+}
+.account-row:last-child { border-bottom: none; }
+
+.account-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.account-name {
+  color: var(--link-blue);
+  font-size: 0.97rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.account-name:hover { text-decoration: underline; }
+
+.account-sub-label {
+  font-size: 0.82rem;
+  color: #8a9cc0;
+}
+
+.account-sub-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 2px;
+}
+
+.account-quick-view {
+  color: #8a9cc0;
+  font-size: 0.82rem;
+  text-decoration: none;
+}
+.account-quick-view:hover {
+  text-decoration: underline;
+  color: var(--link-blue);
+}
+
+.account-promo {
+  font-size: 0.82rem;
+  color: #c9a84c;
+}
+
+.account-note {
+  font-size: 0.82rem;
+  color: #8a9cc0;
+}
+
+.account-balance {
+  font-size: 0.97rem;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+  text-align: right;
+  padding-top: 2px;
+  min-width: 90px;
+}
+
+.accounts-manage-link {
+  display: block;
+  text-align: center;
+  color: var(--link-blue);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin: 14px 32px 4px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(122, 181, 255, 0.1);
+}
+.accounts-manage-link:hover { text-decoration: underline; }

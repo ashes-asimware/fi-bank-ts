@@ -1,5 +1,6 @@
 import "./styles.css";
 import { renderAccountsPage } from "./AccountSummary";
+import { applyLogoFallbacks, LOGO_SRC } from "./logo";
 
 const app = document.querySelector<HTMLDivElement>("#app");
 if (!app) throw new Error("App root not found.");
@@ -8,7 +9,13 @@ function renderLoginPage() {
   app!.innerHTML = `
     <main class="page-shell">
       <section class="login-card" aria-label="Financial institution login form">
-        <header class="brand-strip" aria-hidden="true"></header>
+        <header class="login-header">
+          <div class="accounts-title">
+            <img class="accounts-brand-logo" src="${LOGO_SRC}" data-logo-fallback="true" alt="" aria-hidden="true">
+            <span class="accounts-brand-name">Dampoo Bank</span>
+            <span class="accounts-brand-rest">Online Banking</span>
+          </div>
+        </header>
 
         <form class="login-form" action="#" method="post" novalidate>
           <label class="field-label" for="user-id">User ID</label>
@@ -34,6 +41,8 @@ function renderLoginPage() {
       </section>
     </main>
   `;
+  applyLogoFallbacks(app!);
+
   // Demo: on submit, show accounts page
   const form = app!.querySelector(".login-form");
   if (form) {
