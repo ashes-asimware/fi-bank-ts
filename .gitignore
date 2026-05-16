@@ -144,3 +144,6 @@ vite.config.ts.timestamp-*
 
 # Ignore mock-ui folder
 mock-ui/
+
+# Ignore local generated or temporary app assets
+public/assets/
