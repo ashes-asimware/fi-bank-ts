@@ -1,14 +1,242 @@
+.paytransfer-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #fff;
+  color: var(--brand-blue);
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: 2.5px solid var(--brand-blue);
+  border-radius: 18px;
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(95, 60, 168, 0.08);
+  transition: border-color 0.15s, box-shadow 0.15s, color 0.15s;
+  text-align: center;
+  padding: 0;
+}
+.paytransfer-action:hover {
+  border-color: #7a56c5;
+  color: #7a56c5;
+  box-shadow: 0 4px 16px rgba(95, 60, 168, 0.13);
+  background: #f4f2f9;
+}
+.paytransfer-action-illustration {
+  font-size: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #f4f2f9;
+  color: var(--brand-blue);
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(95, 60, 168, 0.10);
+}
+.paytransfer-action-labels {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+}
+.paytransfer-action-title {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--brand-blue);
+}
+.paytransfer-action-sub {
+  font-size: 0.97rem;
+  font-weight: 400;
+  color: #7a56c5;
+  opacity: 0.95;
+}
+/* =========================================
+   Pay & Transfer History Table
+   ========================================= */
+.paytransfer-history {
+  margin-top: 48px;
+  width: 100%;
+}
+.paytransfer-history-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.paytransfer-history-title-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.paytransfer-history-title {
+  margin: 0;
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #0b0b0b;
+}
+
+.paytransfer-history-range {
+  color: #5f5d66;
+  font-size: 1rem;
+}
+
+.paytransfer-history-tools {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.paytransfer-history-tools a {
+  color: #3f3d45;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.paytransfer-history-tools a:hover {
+  text-decoration: underline;
+}
+
+.paytransfer-history-list {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(22, 20, 28, 0.08);
+  padding: 10px 22px;
+}
+
+.paytransfer-history-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 88px;
+  border-bottom: 1px solid #e2e0e8;
+}
+
+.paytransfer-history-row:last-child {
+  border-bottom: none;
+}
+
+.paytransfer-history-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.paytransfer-history-icon {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.paytransfer-history-icon-image {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.paytransfer-history-name {
+  color: #121018;
+  font-size: 1.1rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.paytransfer-history-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  flex: 0 0 auto;
+}
+
+.paytransfer-history-date {
+  color: #5f5d66;
+  font-size: 0.92rem;
+}
+
+.paytransfer-history-amount {
+  color: #0048a8;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.paytransfer-history-status {
+  color: #5f5d66;
+  font-size: 0.92rem;
+}
+/* =========================================
+   Pay & Transfer Page
+   ========================================= */
+.paytransfer-content {
+  padding: 36px 32px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.paytransfer-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--brand-blue);
+  margin-bottom: 32px;
+}
+
+.paytransfer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 32px;
+}
+
+.paytransfer-action {
+  background: var(--page-bg);
+  color: var(--brand-blue);
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: 2.5px solid var(--brand-blue);
+  border-radius: 18px;
+  width: 120px;
+  height: 120px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(95, 60, 168, 0.08);
+  transition: border-color 0.15s, box-shadow 0.15s, color 0.15s;
+  text-align: center;
+}
+.paytransfer-action:hover {
+  background: var(--page-bg);
+  border-color: #7a56c5;
+  color: #7a56c5;
+  box-shadow: 0 4px 16px rgba(95, 60, 168, 0.13);
+}
 /* =========================================
    CSS Variables
    ========================================= */
 :root {
-  --page-bg: #0a0e16;
-  --panel-bg: #161d2a;
-  --ink: #ecf1ff;
-  --field-border: #41506a;
+  --page-bg: #faf9fd;
+  --panel-bg: #ffffff;
+  --ink: #17151f;
+  --field-border: #b8b2c8;
   --brand-red: #cf173b;
-  --brand-blue: #0f3ea4;
-  --link-blue: #7ab5ff;
+  --brand-blue: #5f3ca8;
+  --link-blue: #2c8a59;
 }
 
 * {
@@ -20,8 +248,8 @@ body {
   min-height: 100vh;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background:
-    radial-gradient(circle at 20% 0%, #1b2840 0%, rgba(27, 40, 64, 0) 48%),
-    radial-gradient(circle at 80% 100%, #141f32 0%, rgba(20, 31, 50, 0) 42%),
+    radial-gradient(circle at 20% 0%, #efe8fb 0%, rgba(239, 232, 251, 0) 48%),
+    radial-gradient(circle at 80% 100%, #e6f4ec 0%, rgba(230, 244, 236, 0) 42%),
     var(--page-bg);
 }
 
@@ -39,8 +267,8 @@ body {
   width: min(100%, 460px);
   background: var(--panel-bg);
   border-radius: 16px;
-  border: 1px solid rgba(122, 181, 255, 0.16);
-  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(95, 60, 168, 0.18);
+  box-shadow: 0 14px 30px rgba(18, 16, 24, 0.14);
   overflow: hidden;
 }
 
@@ -70,9 +298,9 @@ body {
 
 .field-label {
   display: block;
-  font-size: clamp(1.05rem, 3.5vw, 2.15rem);
+  font-size: 1rem;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--brand-blue);
   margin-bottom: 8px;
 }
 
@@ -85,14 +313,14 @@ body {
   height: 46px;
   border: 1.5px solid var(--field-border);
   border-radius: 6px;
-  background: #0f1623;
+  background: #ffffff;
   padding: 0 12px;
   font-size: 1rem;
-  color: #eef4ff;
+  color: #1a2a44;
 }
 
 .field-input:focus-visible {
-  outline: 3px solid rgba(122, 181, 255, 0.35);
+  outline: 3px solid rgba(95, 60, 168, 0.28);
   outline-offset: 1px;
 }
 
@@ -101,8 +329,9 @@ body {
   align-items: center;
   gap: 14px;
   margin-top: 36px;
-  font-size: clamp(1.05rem, 2.4vw, 2rem);
-  color: var(--ink);
+  font-size: 0.97rem;
+  font-weight: 600;
+  color: var(--brand-blue);
   user-select: none;
 }
 
@@ -110,15 +339,15 @@ body {
   appearance: none;
   width: 28px;
   height: 28px;
-  border: 1.5px solid #4c5f7f;
+  border: 1.5px solid #a79dbf;
   border-radius: 3px;
-  background: #0f1623;
+  background: #ffffff;
   margin: 0;
 }
 
 .save-row input:checked {
-  background: linear-gradient(145deg, #0c66df, #0046a8);
-  border-color: #0046a8;
+  background: linear-gradient(145deg, #6f4ab9, #2c8a59);
+  border-color: #2c8a59;
 }
 
 .save-row input:checked::after {
@@ -137,24 +366,24 @@ body {
   height: 58px;
   border: none;
   border-radius: 30px;
-  background: linear-gradient(145deg, #1f66e6, #1245ab);
+  background: linear-gradient(145deg, #6b47b3, #4e2f95);
   color: #fff;
-  font-size: clamp(1.35rem, 4.4vw, 2.2rem);
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
 }
 
 .login-button:hover {
-  background: linear-gradient(145deg, #2a74f8, #174bb7);
+  background: linear-gradient(145deg, #7a56c5, #5a38a6);
 }
 
 .primary-link {
   margin-top: 28px;
   display: block;
   text-align: center;
-  font-size: clamp(1.05rem, 2.8vw, 2rem);
+  font-size: 0.95rem;
   color: var(--link-blue);
-  font-weight: 700;
+  font-weight: 600;
   text-decoration-thickness: 1px;
 }
 
@@ -168,8 +397,8 @@ body {
 
 .secondary-links a {
   color: var(--link-blue);
-  font-size: clamp(0.95rem, 2.6vw, 1.85rem);
-  font-weight: 700;
+  font-size: 0.9rem;
+  font-weight: 600;
   text-decoration-thickness: 1px;
 }
 
@@ -180,8 +409,8 @@ body {
   width: 1080px;
   background: var(--panel-bg);
   border-radius: 18px;
-  border: 1.5px solid rgba(122, 181, 255, 0.18);
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
+  border: 1.5px solid rgba(95, 60, 168, 0.18);
+  box-shadow: 0 12px 28px rgba(18, 16, 24, 0.12);
   margin: 0 auto;
   overflow: hidden;
 }
@@ -238,15 +467,15 @@ body {
   display: flex;
   gap: 0;
   padding: 0 32px;
-  background: #e8ecf0;
-  border-bottom: 1px solid #ccc;
+  background: #f4f2f9;
+  border-bottom: 1px solid #d9d2ea;
   overflow-x: auto;
   overflow-y: hidden;
   flex-wrap: nowrap;
 }
 
 .menu-item {
-  color: #333;
+  color: #221d2b;
   text-decoration: none;
   padding: 12px 18px;
   font-size: 0.95rem;
@@ -256,7 +485,7 @@ body {
   transition: border-color 0.15s, background 0.15s;
 }
 .menu-item:hover {
-  background: #d8dce0;
+  background: #ece8f5;
 }
 .menu-item.active {
   border-bottom-color: var(--brand-blue);
@@ -269,12 +498,12 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   padding: 22px 32px 14px;
-  border-bottom: 1px solid rgba(122, 181, 255, 0.1);
+  border-bottom: 1px solid rgba(95, 60, 168, 0.16);
 }
 
 .accounts-client-label {
   font-size: 0.8rem;
-  color: #aab8d0;
+  color: #5d556d;
   margin-bottom: 4px;
 }
 
@@ -302,20 +531,20 @@ body {
   text-decoration: none;
 }
 .accounts-welcome-links a:hover { text-decoration: underline; }
-.accounts-welcome-links .divider { color: #4c5f7f; }
+.accounts-welcome-links .divider { color: #7a718b; }
 
 .accounts-rewards-badge { text-align: right; min-width: 160px; }
 
 .accounts-rewards-label {
   font-size: 0.72rem;
   font-weight: 700;
-  color: #aab8d0;
+  color: #5d556d;
   letter-spacing: 0.08em;
 }
 
 .accounts-rewards-since {
   font-size: 0.8rem;
-  color: #aab8d0;
+  color: #5d556d;
   margin: 2px 0;
 }
 
@@ -331,7 +560,7 @@ body {
 .accounts-rewards-tier {
   font-size: 0.7rem;
   font-weight: 700;
-  color: #c9a84c;
+  color: #2c8a59;
   letter-spacing: 0.06em;
   text-align: right;
   line-height: 1.3;
@@ -346,7 +575,7 @@ body {
 
 .accounts-disclaimer {
   font-size: 0.78rem;
-  color: #7a8eaa;
+  color: #645b76;
   font-style: italic;
   margin: 20px 32px 4px;
   padding: 0;
@@ -366,7 +595,7 @@ body {
   font-weight: 700;
   color: var(--ink);
   padding: 0 0 6px;
-  border-bottom: 2px solid var(--brand-blue);
+  border-bottom: 2px solid var(--link-blue);
   margin: 0 32px;
 }
 
@@ -388,7 +617,7 @@ body {
   align-items: flex-start;
   justify-content: space-between;
   padding: 12px 32px 10px 48px;
-  border-bottom: 1px solid rgba(122, 181, 255, 0.07);
+  border-bottom: 1px solid rgba(95, 60, 168, 0.12);
   gap: 16px;
 }
 .account-row:last-child { border-bottom: none; }
@@ -402,7 +631,7 @@ body {
 }
 
 .account-name {
-  color: var(--link-blue);
+  color: var(--brand-blue);
   font-size: 0.97rem;
   font-weight: 600;
   text-decoration: none;
@@ -414,7 +643,7 @@ body {
 
 .account-sub-label {
   font-size: 0.82rem;
-  color: #8a9cc0;
+  color: #5d556d;
 }
 
 .account-sub-row {
@@ -426,23 +655,23 @@ body {
 }
 
 .account-quick-view {
-  color: #8a9cc0;
+  color: #5d556d;
   font-size: 0.82rem;
   text-decoration: none;
 }
 .account-quick-view:hover {
   text-decoration: underline;
-  color: var(--link-blue);
+  color: var(--brand-blue);
 }
 
 .account-promo {
   font-size: 0.82rem;
-  color: #c9a84c;
+  color: #2c8a59;
 }
 
 .account-note {
   font-size: 0.82rem;
-  color: #8a9cc0;
+  color: #5d556d;
 }
 
 .account-balance {
@@ -464,6 +693,6 @@ body {
   text-decoration: none;
   margin: 14px 32px 4px;
   padding: 10px 0;
-  border-top: 1px solid rgba(122, 181, 255, 0.1);
+  border-top: 1px solid rgba(95, 60, 168, 0.16);
 }
 .accounts-manage-link:hover { text-decoration: underline; }

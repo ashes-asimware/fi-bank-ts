@@ -1,5 +1,6 @@
 import "./styles.css";
 import { renderAccountsPage } from "./AccountSummary";
+import { renderPayTransferPage } from "./PayTransfer";
 import { applyLogoFallbacks, LOGO_SRC } from "./logo";
 
 const app = document.querySelector<HTMLDivElement>("#app");
@@ -50,6 +51,7 @@ function renderLoginPage() {
       e.preventDefault();
       renderAccountsPage(app!);
       attachLogoutHandler();
+      attachMenuHandlers();
     });
   }
 }
@@ -61,6 +63,28 @@ function attachLogoutHandler() {
       renderLoginPage();
     });
   }
+}
+
+function attachMenuHandlers() {
+  const menu = app!.querySelector(".accounts-menu");
+  if (!menu) return;
+  const items = menu.querySelectorAll(".menu-item");
+  items.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      const text = (item as HTMLElement).textContent?.trim();
+      if (text === "Accounts") {
+        renderAccountsPage(app!);
+        attachLogoutHandler();
+        attachMenuHandlers();
+      } else if (text === "Pay & Transfer") {
+        renderPayTransferPage(app!);
+        attachLogoutHandler();
+        attachMenuHandlers();
+      }
+      // Add more navigation as needed
+    });
+  });
 }
 
 // Start on login page

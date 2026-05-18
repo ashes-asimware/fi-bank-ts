@@ -55,7 +55,7 @@ export function renderAccountsPage(container: HTMLElement) {
             <div class="accounts-list">
               <div class="account-row">
                 <div class="account-main">
-                  <a class="account-name" href="#">Adv Tiered Interest Chkg - 2117</a>
+                  <a class="account-name" href="#">Adv Tiered Interest Chkg - 9482</a>
                   <div class="account-sub-row">
                     <a class="account-quick-view" href="#">Quick View</a>
                     <span class="account-promo">Your special offer!</span>
@@ -65,28 +65,28 @@ export function renderAccountsPage(container: HTMLElement) {
               </div>
               <div class="account-row">
                 <div class="account-main">
-                  <a class="account-name" href="#">Adv Tiered Interest Chkg - 6072</a>
+                  <a class="account-name" href="#">Adv Tiered Interest Chkg - 3159</a>
                   <div class="account-sub-row"><a class="account-quick-view" href="#">Quick View</a></div>
                 </div>
                 <div class="account-balance">$205.00</div>
               </div>
               <div class="account-row">
                 <div class="account-main">
-                  <a class="account-name" href="#">Adv Tiered Interest Chkg - 8648</a>
+                  <a class="account-name" href="#">Adv Tiered Interest Chkg - 7724</a>
                   <div class="account-sub-row"><a class="account-quick-view" href="#">Quick View</a></div>
                 </div>
                 <div class="account-balance">$205.00</div>
               </div>
               <div class="account-row">
                 <div class="account-main">
-                  <a class="account-name" href="#">Advantage Savings - 2317</a>
+                  <a class="account-name" href="#">Advantage Savings - 4096</a>
                   <div class="account-sub-row"><a class="account-quick-view" href="#">Quick View</a></div>
                 </div>
                 <div class="account-balance">$205.36</div>
               </div>
               <div class="account-row">
                 <div class="account-main">
-                  <a class="account-name" href="#">Advantage Savings - 3988</a>
+                  <a class="account-name" href="#">Advantage Savings - 6813</a>
                   <div class="account-sub-row"><a class="account-quick-view" href="#">Quick View</a></div>
                 </div>
                 <div class="account-balance">$138,041.04</div>
@@ -102,7 +102,7 @@ export function renderAccountsPage(container: HTMLElement) {
             <div class="accounts-list">
               <div class="account-row">
                 <div class="account-main">
-                  <a class="account-name" href="#">Platinum Plus Mastercard - 3731</a>
+                  <a class="account-name" href="#">Platinum Plus Mastercard - 5260</a>
                   <div class="account-sub-row">
                     <a class="account-quick-view" href="#">Quick View</a>
                     <span class="account-note">View reminders for your payments due in Pay &amp; Transfer</span>
@@ -112,7 +112,7 @@ export function renderAccountsPage(container: HTMLElement) {
               </div>
               <div class="account-row">
                 <div class="account-main">
-                  <a class="account-name" href="#">Travel Rewards Visa Signature - 1478</a>
+                  <a class="account-name" href="#">Travel Rewards Visa Signature - 8345</a>
                   <div class="account-sub-row">
                     <a class="account-quick-view" href="#">Quick View</a>
                     <span class="account-note">View reminders for your payments due in Pay &amp; Transfer</span>
@@ -140,8 +140,8 @@ export function renderAccountsPage(container: HTMLElement) {
               </div>
               <div class="account-row">
                 <div class="account-main">
-                  <a class="account-name" href="#">MGIA - 4469</a>
-                  <div class="account-sub-label">IRA 7G0-14469</div>
+                  <a class="account-name" href="#">MGIA - 9027</a>
+                  <div class="account-sub-label">IRA 7G0-59027</div>
                   <div class="account-sub-row"><a class="account-quick-view" href="#">Quick View</a></div>
                 </div>
                 <div class="account-balance">$47,327.31</div>
