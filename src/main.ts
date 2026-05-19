@@ -7,10 +7,12 @@ const app = document.querySelector<HTMLDivElement>("#app");
 if (!app) throw new Error("App root not found.");
 
 let detachMenuOutsideListener: (() => void) | null = null;
+let currentPage: "login" | "accounts" | "pay-transfer" = "login";
 
 function renderLoginPage() {
   detachMenuOutsideListener?.();
   detachMenuOutsideListener = null;
+  currentPage = "login";
 
   app!.innerHTML = `
     <main class="page-shell">
@@ -54,11 +56,23 @@ function renderLoginPage() {
   if (form) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      renderAccountsPage(app!);
-      attachLogoutHandler();
-      attachMenuHandlers();
+      renderAccountsView();
     });
   }
+}
+
+function renderAccountsView() {
+  renderAccountsPage(app!);
+  currentPage = "accounts";
+  attachLogoutHandler();
+  attachMenuHandlers();
+}
+
+function renderPayTransferView() {
+  renderPayTransferPage(app!);
+  currentPage = "pay-transfer";
+  attachLogoutHandler();
+  attachMenuHandlers();
 }
 
 function attachLogoutHandler() {
@@ -71,7 +85,7 @@ function attachLogoutHandler() {
 }
 
 function attachMenuHandlers() {
-  const menu = app!.querySelector(".accounts-menu");
+  const menu = app!.querySelector<HTMLElement>(".accounts-menu");
   if (!menu) {
     detachMenuOutsideListener?.();
     detachMenuOutsideListener = null;
@@ -80,12 +94,16 @@ function attachMenuHandlers() {
 
   const dropdowns = menu.querySelectorAll<HTMLElement>(".menu-dropdown");
 
-  const closeAllDropdowns = () => {
+  const closeAllDropdowns = (restoreFocus = false) => {
+    const openTrigger = menu.querySelector<HTMLButtonElement>(".menu-item-button[data-nav-trigger][aria-expanded='true']");
     dropdowns.forEach((dropdown) => {
       dropdown.classList.remove("open");
       const trigger = dropdown.querySelector<HTMLButtonElement>(".menu-item-button[data-nav-trigger]");
       trigger?.setAttribute("aria-expanded", "false");
     });
+    if (restoreFocus) {
+      openTrigger?.focus();
+    }
   };
 
   const toggleDropdown = (dropdownName: string) => {
@@ -110,20 +128,59 @@ function attachMenuHandlers() {
         toggleDropdown(dropdownName);
       }
     });
+
+    trigger.addEventListener("keydown", (event) => {
+      const dropdownName = trigger.dataset.navTrigger;
+      if (!dropdownName) return;
+
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeAllDropdowns(true);
+        return;
+      }
+
+      if (event.key !== "ArrowDown") return;
+
+      event.preventDefault();
+      const dropdown = menu.querySelector<HTMLElement>(`.menu-dropdown[data-dropdown="${dropdownName}"]`);
+      toggleDropdown(dropdownName);
+      const firstLink = dropdown?.querySelector<HTMLElement>("a, button, [tabindex]:not([tabindex='-1'])");
+      firstLink?.focus();
+    });
   });
 
   const topLevelLinks = menu.querySelectorAll<HTMLAnchorElement>(".menu-item[data-nav-page]");
   topLevelLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
+      if (link.classList.contains("active")) {
+        closeAllDropdowns();
+        return;
+      }
       const page = link.dataset.navPage;
       if (page === "accounts") {
-        renderAccountsPage(app!);
+        if (currentPage !== "accounts") {
+          renderAccountsView();
+        }
       } else if (page === "pay-transfer") {
-        renderPayTransferPage(app!);
+        if (currentPage !== "pay-transfer") {
+          renderPayTransferView();
+        }
       }
-      attachLogoutHandler();
-      attachMenuHandlers();
+    });
+  });
+
+  const topLevelUtilityLinks = menu.querySelectorAll<HTMLAnchorElement>(".menu-item:not([data-nav-page])");
+  topLevelUtilityLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href")?.trim();
+      const isPlaceholderLink = !href || href === "#";
+
+      if (isPlaceholderLink) {
+        e.preventDefault();
+      }
+
+      closeAllDropdowns();
     });
   });
 
@@ -134,12 +191,14 @@ function attachMenuHandlers() {
       const page = link.dataset.navPage;
       closeAllDropdowns();
       if (page === "pay-transfer") {
-        renderPayTransferPage(app!);
+        if (currentPage !== "pay-transfer") {
+          renderPayTransferView();
+        }
       } else if (page === "accounts") {
-        renderAccountsPage(app!);
+        if (currentPage !== "accounts") {
+          renderAccountsView();
+        }
       }
-      attachLogoutHandler();
-      attachMenuHandlers();
     });
   });
 
@@ -160,14 +219,31 @@ function attachMenuHandlers() {
 
   detachMenuOutsideListener?.();
   const onDocumentClick = (event: MouseEvent) => {
-    const target = event.target as Node | null;
-    if (target && !menu.contains(target)) {
+    if (!event.composedPath().includes(menu)) {
       closeAllDropdowns();
     }
   };
   document.addEventListener("click", onDocumentClick);
+
+  const onDocumentFocusIn = (event: FocusEvent) => {
+    if (!event.composedPath().includes(menu)) {
+      closeAllDropdowns();
+    }
+  };
+  document.addEventListener("focusin", onDocumentFocusIn);
+
+  const onMenuKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeAllDropdowns(true);
+    }
+  };
+  menu.addEventListener("keydown", onMenuKeyDown);
+
   detachMenuOutsideListener = () => {
     document.removeEventListener("click", onDocumentClick);
+    document.removeEventListener("focusin", onDocumentFocusIn);
+    menu.removeEventListener("keydown", onMenuKeyDown);
   };
 }
 
