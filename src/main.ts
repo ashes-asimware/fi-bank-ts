@@ -151,13 +151,6 @@ function attachMenuHandlers() {
     });
   });
 
-  menu.addEventListener("click", (e) => {
-    const target = e.target as Element;
-    if (!target.closest(".menu-dropdown")) {
-      closeAllDropdowns();
-    }
-  });
-
   detachMenuOutsideListener?.();
   const onDocumentClick = (event: MouseEvent) => {
     const target = event.target as Node | null;
