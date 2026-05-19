@@ -618,10 +618,18 @@ body {
 .menu-dropdown-panel-tools {
   left: -150px;
   width: 730px;
+  max-width: calc(100vw - 32px);
   background: #f2f2f5;
   border: 1px solid #d8d6de;
   box-shadow: 0 8px 18px rgba(26, 20, 40, 0.1);
   padding: 0;
+}
+
+@media (max-width: 900px) {
+  .menu-dropdown-panel-tools {
+    left: 0;
+    width: min(730px, calc(100vw - 32px));
+  }
 }
 
 .menu-dropdown-title-tools {
