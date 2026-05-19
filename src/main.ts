@@ -146,7 +146,14 @@ function attachMenuHandlers() {
   const submenuUtilityLinks = menu.querySelectorAll<HTMLAnchorElement>(".menu-dropdown-link:not([data-nav-page])");
   submenuUtilityLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
-      e.preventDefault();
+      const href = link.getAttribute("href")?.trim();
+      const isPlaceholderLink = !href || href === "#";
+
+      if (isPlaceholderLink) {
+        e.preventDefault();
+        // TODO: Replace placeholder utility links with real navigation targets as they become available.
+      }
+
       closeAllDropdowns();
     });
   });
