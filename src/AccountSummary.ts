@@ -1,6 +1,7 @@
 // AccountSummary.ts
 // Renders the Accounts page UI matching AccountSummary.png / accounts2.png
 
+import { renderAccountsMenu } from "./accountsMenu";
 import { applyLogoFallbacks, LOGO_SRC } from "./logo";
 
 export function renderAccountsPage(container: HTMLElement) {
@@ -16,15 +17,7 @@ export function renderAccountsPage(container: HTMLElement) {
           <button class="accounts-logout" type="button">Log out</button>
         </header>
 
-        <nav class="accounts-menu">
-          <a class="menu-item active" href="#">Accounts</a>
-          <a class="menu-item" href="#">Pay & Transfer</a>
-          <a class="menu-item" href="#">Rewards & Deals</a>
-          <a class="menu-item" href="#">Tools & Investing</a>
-          <a class="menu-item" href="#">Security Center</a>
-          <a class="menu-item" href="#">Open an Account</a>
-          <a class="menu-item" href="#">Help & Support</a>
-        </nav>
+        ${renderAccountsMenu("accounts", LOGO_SRC)}
 
         <div class="accounts-welcome">
           <div class="accounts-welcome-left">

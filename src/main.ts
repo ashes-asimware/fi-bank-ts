@@ -6,7 +6,14 @@ import { applyLogoFallbacks, LOGO_SRC } from "./logo";
 const app = document.querySelector<HTMLDivElement>("#app");
 if (!app) throw new Error("App root not found.");
 
+let detachMenuOutsideListener: (() => void) | null = null;
+let currentPage: "login" | "accounts" | "pay-transfer" = "login";
+
 function renderLoginPage() {
+  detachMenuOutsideListener?.();
+  detachMenuOutsideListener = null;
+  currentPage = "login";
+
   app!.innerHTML = `
     <main class="page-shell">
       <section class="login-card" aria-label="Financial institution login form">
@@ -49,11 +56,23 @@ function renderLoginPage() {
   if (form) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      renderAccountsPage(app!);
-      attachLogoutHandler();
-      attachMenuHandlers();
+      renderAccountsView();
     });
   }
+}
+
+function renderAccountsView() {
+  renderAccountsPage(app!);
+  currentPage = "accounts";
+  attachLogoutHandler();
+  attachMenuHandlers();
+}
+
+function renderPayTransferView() {
+  renderPayTransferPage(app!);
+  currentPage = "pay-transfer";
+  attachLogoutHandler();
+  attachMenuHandlers();
 }
 
 function attachLogoutHandler() {
@@ -66,25 +85,166 @@ function attachLogoutHandler() {
 }
 
 function attachMenuHandlers() {
-  const menu = app!.querySelector(".accounts-menu");
-  if (!menu) return;
-  const items = menu.querySelectorAll(".menu-item");
-  items.forEach((item) => {
-    item.addEventListener("click", (e) => {
+  const menu = app!.querySelector<HTMLElement>(".accounts-menu");
+  if (!menu) {
+    detachMenuOutsideListener?.();
+    detachMenuOutsideListener = null;
+    return;
+  }
+
+  const dropdowns = menu.querySelectorAll<HTMLElement>(".menu-dropdown");
+
+  const closeAllDropdowns = (restoreFocus = false) => {
+    const openTrigger = menu.querySelector<HTMLButtonElement>(".menu-item-button[data-nav-trigger][aria-expanded='true']");
+    dropdowns.forEach((dropdown) => {
+      dropdown.classList.remove("open");
+      const trigger = dropdown.querySelector<HTMLButtonElement>(".menu-item-button[data-nav-trigger]");
+      trigger?.setAttribute("aria-expanded", "false");
+    });
+    if (restoreFocus) {
+      openTrigger?.focus();
+    }
+  };
+
+  const toggleDropdown = (dropdownName: string) => {
+    const dropdown = menu.querySelector<HTMLElement>(`.menu-dropdown[data-dropdown="${dropdownName}"]`);
+    const trigger = menu.querySelector<HTMLButtonElement>(`.menu-item-button[data-nav-trigger="${dropdownName}"]`);
+    if (!dropdown || !trigger) return;
+    const shouldOpen = !dropdown.classList.contains("open");
+    closeAllDropdowns();
+    if (shouldOpen) {
+      dropdown.classList.add("open");
+      trigger.setAttribute("aria-expanded", "true");
+    }
+  };
+
+  const triggers = menu.querySelectorAll<HTMLButtonElement>(".menu-item-button[data-nav-trigger]");
+  triggers.forEach((trigger) => {
+    trigger.addEventListener("click", (e) => {
       e.preventDefault();
-      const text = (item as HTMLElement).textContent?.trim();
-      if (text === "Accounts") {
-        renderAccountsPage(app!);
-        attachLogoutHandler();
-        attachMenuHandlers();
-      } else if (text === "Pay & Transfer") {
-        renderPayTransferPage(app!);
-        attachLogoutHandler();
-        attachMenuHandlers();
+      e.stopPropagation();
+      const dropdownName = trigger.dataset.navTrigger;
+      if (dropdownName) {
+        toggleDropdown(dropdownName);
       }
-      // Add more navigation as needed
+    });
+
+    trigger.addEventListener("keydown", (event) => {
+      const dropdownName = trigger.dataset.navTrigger;
+      if (!dropdownName) return;
+
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeAllDropdowns(true);
+        return;
+      }
+
+      if (event.key !== "ArrowDown") return;
+
+      event.preventDefault();
+      const dropdown = menu.querySelector<HTMLElement>(`.menu-dropdown[data-dropdown="${dropdownName}"]`);
+      toggleDropdown(dropdownName);
+      const firstLink = dropdown?.querySelector<HTMLElement>("a, button, [tabindex]:not([tabindex='-1'])");
+      firstLink?.focus();
     });
   });
+
+  const topLevelLinks = menu.querySelectorAll<HTMLAnchorElement>(".menu-item[data-nav-page]");
+  topLevelLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (link.classList.contains("active")) {
+        closeAllDropdowns();
+        return;
+      }
+      const page = link.dataset.navPage;
+      if (page === "accounts") {
+        if (currentPage !== "accounts") {
+          renderAccountsView();
+        }
+      } else if (page === "pay-transfer") {
+        if (currentPage !== "pay-transfer") {
+          renderPayTransferView();
+        }
+      }
+    });
+  });
+
+  const topLevelUtilityLinks = menu.querySelectorAll<HTMLAnchorElement>(".menu-item:not([data-nav-page])");
+  topLevelUtilityLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href")?.trim();
+      const isPlaceholderLink = !href || href === "#";
+
+      if (isPlaceholderLink) {
+        e.preventDefault();
+      }
+
+      closeAllDropdowns();
+    });
+  });
+
+  const submenuLinks = menu.querySelectorAll<HTMLAnchorElement>(".menu-dropdown-link[data-nav-page]");
+  submenuLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const page = link.dataset.navPage;
+      closeAllDropdowns();
+      if (page === "pay-transfer") {
+        if (currentPage !== "pay-transfer") {
+          renderPayTransferView();
+        }
+      } else if (page === "accounts") {
+        if (currentPage !== "accounts") {
+          renderAccountsView();
+        }
+      }
+    });
+  });
+
+  const submenuUtilityLinks = menu.querySelectorAll<HTMLAnchorElement>(".menu-dropdown-link:not([data-nav-page])");
+  submenuUtilityLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href")?.trim();
+      const isPlaceholderLink = !href || href === "#";
+
+      if (isPlaceholderLink) {
+        e.preventDefault();
+        // TODO: Replace placeholder utility links with real navigation targets as they become available.
+      }
+
+      closeAllDropdowns();
+    });
+  });
+
+  detachMenuOutsideListener?.();
+  const onDocumentClick = (event: MouseEvent) => {
+    if (!event.composedPath().includes(menu)) {
+      closeAllDropdowns();
+    }
+  };
+  document.addEventListener("click", onDocumentClick);
+
+  const onDocumentFocusIn = (event: FocusEvent) => {
+    if (!event.composedPath().includes(menu)) {
+      closeAllDropdowns();
+    }
+  };
+  document.addEventListener("focusin", onDocumentFocusIn);
+
+  const onMenuKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeAllDropdowns(true);
+    }
+  };
+  menu.addEventListener("keydown", onMenuKeyDown);
+
+  detachMenuOutsideListener = () => {
+    document.removeEventListener("click", onDocumentClick);
+    document.removeEventListener("focusin", onDocumentFocusIn);
+    menu.removeEventListener("keydown", onMenuKeyDown);
+  };
 }
 
 // Start on login page

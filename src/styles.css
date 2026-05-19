@@ -469,9 +469,19 @@ body {
   padding: 0 32px;
   background: #f4f2f9;
   border-bottom: 1px solid #d9d2ea;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow-x: visible;
+  overflow-y: visible;
   flex-wrap: nowrap;
+  position: relative;
+  z-index: 10;
+}
+
+@media (max-width: 1100px) {
+  .accounts-menu {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 .menu-item {
@@ -489,6 +499,265 @@ body {
 }
 .menu-item.active {
   border-bottom-color: var(--brand-blue);
+  color: var(--brand-blue);
+}
+
+.menu-dropdown {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  padding: 0;
+}
+
+.menu-item-button {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: #221d2b;
+  padding: 12px 18px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.menu-item-button:hover {
+  background: #ece8f5;
+}
+
+.menu-item-button-active {
+  color: var(--brand-blue);
+  border-bottom-color: var(--brand-blue);
+}
+
+.menu-dropdown-panel {
+  display: none;
+  position: absolute;
+  top: calc(100% + 1px);
+  /* Offset aligns the panel edge with the Pay & Transfer trigger text in the current desktop nav spacing. */
+  left: -54px;
+  width: 674px;
+  background: var(--page-bg);
+  border: 1px solid rgba(95, 60, 168, 0.35);
+  box-shadow: 0 8px 18px rgba(26, 20, 40, 0.12);
+  overflow: hidden;
+  padding: 14px 0 0;
+}
+
+.menu-dropdown.open .menu-dropdown-panel {
+  display: block;
+}
+
+.menu-dropdown-title {
+  color: var(--brand-blue);
+  font-size: 1.45rem;
+  font-weight: 700;
+  padding: 0 16px 12px;
+  border-bottom: 1px solid rgba(44, 138, 89, 0.4);
+}
+
+.menu-dropdown-grid {
+  display: grid;
+  grid-template-columns: 1.12fr 1fr 1fr;
+}
+
+.menu-dropdown-column {
+  padding: 14px 18px 18px;
+  min-height: 286px;
+}
+
+.menu-dropdown-column + .menu-dropdown-column {
+  border-left: 1px solid rgba(95, 60, 168, 0.2);
+}
+
+.menu-dropdown-section-title {
+  color: var(--ink);
+  font-size: 1.02rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.menu-dropdown-section-spaced {
+  margin-top: 16px;
+}
+
+.menu-dropdown-link {
+  display: block;
+  padding: 7px 0;
+  color: var(--link-blue);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.menu-dropdown-link:hover {
+  color: var(--brand-blue);
+  text-decoration: underline;
+}
+
+.menu-dropdown-panel-rewards {
+  left: -2px;
+  width: 172px;
+  background: #f2f2f5;
+  border: 1px solid #d8d6de;
+  box-shadow: 0 8px 18px rgba(26, 20, 40, 0.1);
+  padding: 0 0 14px;
+}
+
+.menu-dropdown-title-rewards {
+  font-size: 1.1rem;
+  color: var(--brand-blue);
+  padding: 14px 14px 10px;
+  border-bottom: none;
+}
+
+.menu-dropdown-link-rewards {
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  color: var(--link-blue);
+}
+
+.menu-dropdown-link-rewards:hover {
+  background: rgba(95, 60, 168, 0.08);
+  color: var(--brand-blue);
+}
+
+.menu-dropdown-panel-tools {
+  /* Wider tools panel is shifted left so its heading aligns under the trigger in desktop nav layouts. */
+  left: -150px;
+  width: 730px;
+  max-width: calc(100vw - 32px);
+  background: #f2f2f5;
+  border: 1px solid #d8d6de;
+  box-shadow: 0 8px 18px rgba(26, 20, 40, 0.1);
+  padding: 0;
+}
+
+@media (max-width: 900px) {
+  .menu-dropdown-panel-tools {
+    left: 0;
+    width: min(730px, calc(100vw - 32px));
+  }
+}
+
+.menu-dropdown-title-tools {
+  font-size: 1.45rem;
+  color: var(--brand-blue);
+  padding: 14px 18px 12px;
+  border-bottom: 1px solid rgba(95, 60, 168, 0.2);
+}
+
+.menu-dropdown-grid-tools {
+  display: grid;
+  grid-template-columns: 0.75fr 1fr 1fr;
+}
+
+.menu-dropdown-tools-col {
+  min-height: 220px;
+  padding: 14px 18px 16px;
+}
+
+.menu-dropdown-tools-col + .menu-dropdown-tools-col {
+  border-left: 1px solid rgba(95, 60, 168, 0.16);
+}
+
+.menu-dropdown-tools-col-nav {
+  padding: 14px 0 0;
+}
+
+.menu-dropdown-tools-heading {
+  color: var(--ink);
+  font-size: 1.02rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.menu-dropdown-tools-col-nav .menu-dropdown-tools-heading {
+  padding: 0 18px;
+}
+
+.menu-dropdown-tools-heading-feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.menu-dropdown-tools-logo {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  flex: 0 0 18px;
+}
+
+.menu-dropdown-link-tools {
+  color: var(--link-blue);
+  font-size: 0.95rem;
+  padding: 8px 18px;
+}
+
+.menu-dropdown-tools-col:not(.menu-dropdown-tools-col-nav) .menu-dropdown-link-tools {
+  padding: 8px 0;
+}
+
+.menu-dropdown-tools-copy {
+  color: #2f2c37;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  margin: 6px 0 10px;
+  max-width: 240px;
+}
+
+.menu-dropdown-tools-footer {
+  margin-top: 12px;
+  padding: 12px 18px 10px;
+  border-top: 1px solid rgba(95, 60, 168, 0.16);
+  color: var(--brand-blue);
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
+.menu-dropdown-panel-security {
+  left: -2px;
+  width: 232px;
+  background: #f2f2f5;
+  border: 1px solid #d8d6de;
+  box-shadow: 0 8px 18px rgba(26, 20, 40, 0.1);
+  padding: 6px 0;
+}
+
+.menu-dropdown-link-security {
+  padding: 11px 14px;
+  font-size: 0.95rem;
+  color: var(--link-blue);
+  line-height: 1.25;
+}
+
+.menu-dropdown-link-security:hover {
+  background: rgba(95, 60, 168, 0.08);
+  color: var(--brand-blue);
+}
+
+.menu-dropdown-panel-open-account {
+  left: -2px;
+  width: 214px;
+  background: #f2f2f5;
+  border: 1px solid #d8d6de;
+  box-shadow: 0 8px 18px rgba(26, 20, 40, 0.1);
+  padding: 8px 0;
+}
+
+.menu-dropdown-link-open-account {
+  padding: 11px 14px;
+  font-size: 0.95rem;
+  color: var(--link-blue);
+  line-height: 1.25;
+}
+
+.menu-dropdown-link-open-account:hover {
+  background: rgba(95, 60, 168, 0.08);
   color: var(--brand-blue);
 }
 

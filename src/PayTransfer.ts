@@ -1,6 +1,7 @@
 // PayTransfer.ts
 // Renders the Pay & Transfer page UI matching Pay+Transfer.png
 
+import { renderAccountsMenu } from "./accountsMenu";
 import { applyLogoFallbacks, LOGO_SRC } from "./logo";
 
 export function renderPayTransferPage(container: HTMLElement) {
@@ -16,15 +17,7 @@ export function renderPayTransferPage(container: HTMLElement) {
           <button class="accounts-logout" type="button">Log out</button>
         </header>
 
-        <nav class="accounts-menu">
-          <a class="menu-item" href="#">Accounts</a>
-          <a class="menu-item active" href="#">Pay & Transfer</a>
-          <a class="menu-item" href="#">Rewards & Deals</a>
-          <a class="menu-item" href="#">Tools & Investing</a>
-          <a class="menu-item" href="#">Security Center</a>
-          <a class="menu-item" href="#">Open an Account</a>
-          <a class="menu-item" href="#">Help & Support</a>
-        </nav>
+        ${renderAccountsMenu("pay-transfer", LOGO_SRC)}
 
         <div class="paytransfer-content">
           <h2 class="paytransfer-title">Pay & Transfer</h2>
