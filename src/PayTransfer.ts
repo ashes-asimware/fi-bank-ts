@@ -18,7 +18,7 @@ export function renderPayTransferPage(container: HTMLElement) {
 
         <nav class="accounts-menu">
           <a class="menu-item" href="#" data-nav-page="accounts">Accounts</a>
-          <div class="menu-dropdown menu-dropdown-active" data-dropdown="pay-transfer">
+          <div class="menu-dropdown" data-dropdown="pay-transfer">
             <button class="menu-item-button menu-item-button-active" type="button" data-nav-trigger="pay-transfer" aria-haspopup="true" aria-expanded="false">Pay &amp; Transfer</button>
             <div class="menu-dropdown-panel" role="menu" aria-label="Pay and Transfer">
               <div class="menu-dropdown-title">Pay &amp; Transfer</div>
