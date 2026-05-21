@@ -152,6 +152,7 @@ export function renderPayTransferPage(container: HTMLElement) {
             </div>
           </div>
         </div>
+
       </section>
     </main>
   `;

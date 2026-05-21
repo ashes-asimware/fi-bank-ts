@@ -965,3 +965,172 @@ body {
   border-top: 1px solid rgba(95, 60, 168, 0.16);
 }
 .accounts-manage-link:hover { text-decoration: underline; }
+
+/* Connect with us section */
+.connect-with-us-section {
+  padding: 40px 32px;
+  text-align: center;
+}
+
+.connect-with-us-title {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--brand-blue);
+  margin: 0 0 30px 0;
+  line-height: 1.3;
+}
+
+.connect-with-us-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.connect-with-us-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: #f9f9fb;
+  border: 2px solid var(--link-blue);
+  border-radius: 4px;
+}
+
+.connect-with-us-icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  display: block;
+  color: var(--brand-blue);
+}
+
+.connect-with-us-link {
+  color: var(--link-blue);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.connect-with-us-link:hover {
+  color: var(--brand-blue);
+  text-decoration: underline;
+}
+
+/* Help Support page */
+.help-support-content {
+  padding: 32px;
+  border-bottom: 1px solid rgba(95, 60, 168, 0.16);
+}
+
+.help-support-title {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+}
+
+.help-support-description {
+  font-size: 1rem;
+  color: #645b76;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Help Support banner */
+.help-support-banner {
+  background: var(--brand-blue);
+  padding: 32px 0;
+  width: 100%;
+}
+
+.help-support-banner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.help-support-banner-text {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: white;
+  margin: 0;
+  white-space: nowrap;
+  line-height: 1.3;
+}
+
+.help-support-search-box {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.help-support-search-input {
+  width: 280px;
+  padding: 10px 14px;
+  border: 1px solid #d8d6de;
+  border-radius: 2px;
+  font-size: 0.95rem;
+  background: white;
+  color: var(--ink);
+  font-family: inherit;
+}
+
+.help-support-search-input::placeholder {
+  color: #a8a5b8;
+}
+
+.help-support-search-input:focus {
+  outline: none;
+  border-color: var(--link-blue);
+  box-shadow: 0 0 0 3px rgba(44, 138, 89, 0.1);
+}
+
+.help-support-search-button {
+  padding: 10px 24px;
+  background: var(--ink);
+  color: white;
+  border: none;
+  border-radius: 2px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.help-support-search-button:hover {
+  background: #2d2535;
+}
+
+.help-support-search-button:active {
+  background: #1a1423;
+}
+
+/* Rewards Deals page */
+.rewards-deals-content {
+  padding: 32px;
+  border-bottom: 1px solid rgba(95, 60, 168, 0.16);
+}
+
+.rewards-deals-title {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+}
+
+.rewards-deals-description {
+  font-size: 1rem;
+  color: #645b76;
+  margin: 0;
+  line-height: 1.5;
+}

@@ -1,13 +1,15 @@
 import "./styles.css";
 import { renderAccountsPage } from "./AccountSummary";
 import { renderPayTransferPage } from "./PayTransfer";
+import { renderHelpSupportPage } from "./HelpSupport";
+import { renderRewardsDealPage } from "./RewardsDeals";
 import { applyLogoFallbacks, LOGO_SRC } from "./logo";
 
 const app = document.querySelector<HTMLDivElement>("#app");
 if (!app) throw new Error("App root not found.");
 
 let detachMenuOutsideListener: (() => void) | null = null;
-let currentPage: "login" | "accounts" | "pay-transfer" = "login";
+let currentPage: "login" | "accounts" | "pay-transfer" | "help-support" | "rewards-deals" = "login";
 
 function renderLoginPage() {
   detachMenuOutsideListener?.();
@@ -71,6 +73,20 @@ function renderAccountsView() {
 function renderPayTransferView() {
   renderPayTransferPage(app!);
   currentPage = "pay-transfer";
+  attachLogoutHandler();
+  attachMenuHandlers();
+}
+
+function renderHelpSupportView() {
+  renderHelpSupportPage(app!);
+  currentPage = "help-support";
+  attachLogoutHandler();
+  attachMenuHandlers();
+}
+
+function renderRewardsDealView() {
+  renderRewardsDealPage(app!);
+  currentPage = "rewards-deals";
   attachLogoutHandler();
   attachMenuHandlers();
 }
@@ -166,6 +182,14 @@ function attachMenuHandlers() {
         if (currentPage !== "pay-transfer") {
           renderPayTransferView();
         }
+      } else if (page === "help-support") {
+        if (currentPage !== "help-support") {
+          renderHelpSupportView();
+        }
+      } else if (page === "rewards-deals") {
+        if (currentPage !== "rewards-deals") {
+          renderRewardsDealView();
+        }
       }
     });
   });
@@ -197,6 +221,14 @@ function attachMenuHandlers() {
       } else if (page === "accounts") {
         if (currentPage !== "accounts") {
           renderAccountsView();
+        }
+      } else if (page === "help-support") {
+        if (currentPage !== "help-support") {
+          renderHelpSupportView();
+        }
+      } else if (page === "rewards-deals") {
+        if (currentPage !== "rewards-deals") {
+          renderRewardsDealView();
         }
       }
     });

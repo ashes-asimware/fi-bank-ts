@@ -1,8 +1,9 @@
-export type AccountsMenuPage = "accounts" | "pay-transfer";
+export type AccountsMenuPage = "accounts" | "pay-transfer" | "help-support" | "rewards-deals";
 
 export function renderAccountsMenu(activePage: AccountsMenuPage, logoSrc: string) {
   const isAccountsActive = activePage === "accounts";
   const isPayTransferActive = activePage === "pay-transfer";
+  const isHelpSupportActive = activePage === "help-support";
 
   return `
         <nav class="accounts-menu">
@@ -51,7 +52,7 @@ export function renderAccountsMenu(activePage: AccountsMenuPage, logoSrc: string
             <div class="menu-dropdown-panel menu-dropdown-panel-rewards" id="menu-panel-rewards-deals" aria-label="Rewards and Deals">
               <div class="menu-dropdown-title menu-dropdown-title-rewards">Rewards &amp; Deals</div>
               <a class="menu-dropdown-link menu-dropdown-link-rewards" href="#">Special offers</a>
-              <a class="menu-dropdown-link menu-dropdown-link-rewards" href="#">My Rewards</a>
+              <a class="menu-dropdown-link menu-dropdown-link-rewards" href="#" data-nav-page="rewards-deals">My Rewards</a>
               <a class="menu-dropdown-link menu-dropdown-link-rewards" href="#">Cash back deals</a>
             </div>
           </div>
@@ -105,7 +106,7 @@ export function renderAccountsMenu(activePage: AccountsMenuPage, logoSrc: string
               <a class="menu-dropdown-link menu-dropdown-link-open-account" href="#">Open a new account</a>
             </div>
           </div>
-          <a class="menu-item" href="#">Help &amp; Support</a>
+          <a class="menu-item${isHelpSupportActive ? " active" : ""}" href="#" data-nav-page="help-support">Help &amp; Support</a>
         </nav>
   `;
 }
