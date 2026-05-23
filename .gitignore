@@ -147,3 +147,6 @@ mock-ui/
 
 # Ignore local generated or temporary app assets
 public/assets/
+
+# Local HTTPS certs for Vite dev server
+.cert/
