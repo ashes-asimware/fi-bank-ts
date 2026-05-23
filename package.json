@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "setup:https": "powershell -ExecutionPolicy Bypass -File ./scripts/setup-local-https.ps1",
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview"
