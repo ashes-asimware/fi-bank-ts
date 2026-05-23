@@ -6,6 +6,7 @@ const certDir = path.resolve(__dirname, '.cert');
 const pfxPath = path.join(certDir, 'localhost.pfx');
 const passphrase = process.env.VITE_DEV_CERT_PASSPHRASE ?? 'fi-bank-local';
 const localHostName = 'dampoo.bank';
+const loopbackHost = '127.0.0.1';
 
 export default defineConfig(({ command }) => {
   if (command !== 'serve') {
@@ -25,12 +26,12 @@ export default defineConfig(({ command }) => {
 
   return {
     server: {
-      host: true,
+      host: loopbackHost,
       allowedHosts: [localHostName, 'localhost'],
       https,
     },
     preview: {
-      host: true,
+      host: loopbackHost,
       https,
     },
   };
